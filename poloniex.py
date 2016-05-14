@@ -53,8 +53,13 @@ class Poloniex:
                 'Key': self.APIKey
             }
 
-            ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/tradingApi', post_data, headers))
-            jsonRet = json.loads(ret.read())
+            try:
+                ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/tradingApi', None, headers),post_data,timeout=30)
+                jsonRet = json.loads(ret.read())
+            except Exception as e:
+                log.log("ERROR: " + str(e))
+                jsonRet = ""
+
             return self.post_process(jsonRet)
 
 
