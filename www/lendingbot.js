@@ -101,7 +101,7 @@ function updateRawValues(rawData){
 			// print coin BTC earnings
             if(!isNaN(highestBidBTC)) {
                 var cell = row.appendChild(document.createElement("td"));
-                    cell.innerHTML = "<b>"+ couple +"<br/>highest bid:<br/>"+ highestBidBTC +"<b>";
+                    cell.innerHTML = "<b>"+ couple +"<br/>highest bid:<br/>"+ highestBidBTC.toFixed(8) +"<b>";
                 var cell = row.appendChild(document.createElement("td"));
                     cell.setAttribute("colspan", rowValues.length - earningsColspan - 1);
                     cell.innerHTML = earningsBTC;
@@ -177,7 +177,7 @@ function Timespan(name, multiplier) {
 		if(currency == "BTC" && this == Hour) {
 			return Math.round(earnings * 100000000) + " Satoshi / Hour<br/>";
 		} else {
-			return roundFloat(earnings, 100000000) + " " + currency + " / " + name + "<br/>";
+			return roundFloat(earnings, 100000000).toFixed(8) + " " + currency + " / " + name + "<br/>";
 		}
 	};
 }
